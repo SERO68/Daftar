@@ -32,7 +32,6 @@ class EarningsCard extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Left side with Earnings, Losses, and Net
               Directionality(
                 textDirection: TextDirection.rtl,
                 child: Column(
@@ -62,7 +61,6 @@ class EarningsCard extends StatelessWidget {
                   ],
                 ),
               ),
-              // Right side with Title, Subtitle, and الاجمالي
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [

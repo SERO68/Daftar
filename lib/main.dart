@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:reports/serviceprovider.dart';
 
 void main() async { WidgetsFlutterBinding.ensureInitialized();
-  await initializeDateFormatting('ar', null); // Initialize the Arabic locale
+  await initializeDateFormatting('ar', null); 
   runApp(  MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ChartDataProvider()),
@@ -22,15 +22,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int _selectedIndex = 0; // Default index for home screen
+  int _selectedIndex = 0; 
 
-  // List of all screens
   final List<Widget> _screens = [
     const DashboardScreen(),
     const ReportsScreen(),
   ];
 
-  // Method to handle bottom navigation bar tap
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -42,7 +40,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: _screens[_selectedIndex], // Display the selected screen
+        body: _screens[_selectedIndex], 
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.red[700],
@@ -57,7 +55,7 @@ class _MyAppState extends State<MyApp> {
               label: 'التقارير',
             ),
           ],
-          onTap: _onItemTapped, // Handle navigation tap
+          onTap: _onItemTapped,
         ),
       ),
     );

@@ -25,9 +25,9 @@ class Reportscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl, // Ensure RTL for Arabic
+      textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: const Color(0xFFF5F5F5), // Light background
+        backgroundColor: const Color(0xFFF5F5F5), 
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -44,9 +44,9 @@ class Reportscreen extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: ListView.builder(
-            itemCount: list.length, // Set itemCount to the length of the list
+            itemCount: list.length, 
             itemBuilder: (context, index) {
-              final item = list[index]; // Get the current item from the list
+              final item = list[index]; 
               return Container(
                 margin: const EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(
@@ -67,7 +67,6 @@ class Reportscreen extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    // Job Row
                     Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
@@ -116,7 +115,7 @@ class Reportscreen extends StatelessWidget {
                                     width: 10,
                                   ),
                                   Text(
-                                    item['name'], // Display the name from the list
+                                    item['name'], 
                                     style: const TextStyle(
                                       color: Colors.black,
                                       fontSize: 18,
@@ -155,7 +154,6 @@ class Reportscreen extends StatelessWidget {
                             thickness: 1,
                           ),
                           const SizedBox(height: 10),
-                          // Total Row
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -168,7 +166,7 @@ class Reportscreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '+ ${item['price']} ج.م', // Display the price from the list
+                                '+ ${item['price']} ج.م',
                                 style: TextStyle(
                                   color: textcolor,
                                   fontSize: 18,

@@ -12,9 +12,9 @@ class ReportsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl, // Ensure RTL for Arabic
+      textDirection: TextDirection.rtl, 
       child: Scaffold(
-        backgroundColor: const Color(0xFFF5F5F5), // Light background
+        backgroundColor: const Color(0xFFF5F5F5), 
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -31,7 +31,7 @@ class ReportsScreen extends StatelessWidget {
             children: [
               const Search(),
               const SizedBox(height: 20),
-              const Filtter(), // Filter buttons
+              const Filtter(), 
               const SizedBox(height: 20),
               Expanded(
                 child: Consumer<Serviceprovider>(
@@ -67,7 +67,6 @@ class ReportsScreen extends StatelessWidget {
                       reportsToShow = [serviceprovider.previousDayReport];
                     }
 
-                    // New: Check for search results
                     if (serviceprovider.searchedReport.isNotEmpty) {
                       reportsToShow = [serviceprovider.searchedReport];
                     }
@@ -97,7 +96,6 @@ class ReportsScreen extends StatelessWidget {
   }
 
   Widget _buildReportContainer(Map<String, dynamic> report) {
-    // Extract necessary information from the report
     final DateTime reportDate = DateTime.parse(report['reportTime']);
     final List<dynamic> payments = report['payments'] ?? [];
     final List<dynamic> bills = report['bills'] ?? [];
@@ -127,7 +125,6 @@ class ReportsScreen extends StatelessWidget {
       ),
       child: Column(
         children: [
-          // Date Row
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -166,7 +163,6 @@ class ReportsScreen extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox(height: 20),
-                // Paid (Green box)
                 ReportBox(
                   title: 'المدفوعات',
                   subtitle: 'المبلغ المدفوع',
@@ -184,7 +180,6 @@ class ReportsScreen extends StatelessWidget {
                   job: 'العميل',  datetime: reportDate, list: payments,
                 ),
                 const SizedBox(height: 10),
-                // Invoices (White box)
                 ReportBox(
                   title: 'الفواتير',
                   subtitle: 'المبلغ المستحق',
@@ -202,7 +197,6 @@ class ReportsScreen extends StatelessWidget {
                   job: 'العميل',  datetime: reportDate, list: bills,
                 ),
                 const SizedBox(height: 10),
-                // Destructive (Red box)
                 ReportBox(
                   title: 'الخسائر',
                   subtitle: 'الخسارة',
@@ -225,7 +219,6 @@ class ReportsScreen extends StatelessWidget {
                   thickness: 1,
                 ),
                 const SizedBox(height: 10),
-                // Total Row
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

@@ -20,20 +20,17 @@ class Serviceprovider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // List to store all reports
   List<Map<String, dynamic>> _reports = [];
-  // Data for specific report views
   Map<String, dynamic> _dailyReport = {};
   Map<String, dynamic> _previousDayReport = {};
-  Map<String, dynamic> _searchedReport = {}; // New: To store search results
+  Map<String, dynamic> _searchedReport = {}; 
   bool hasNoData = false;
-  // Loading state
   bool _isLoading = false;
 
   List<Map<String, dynamic>> get reports => _reports;
   Map<String, dynamic> get dailyReport => _dailyReport;
   Map<String, dynamic> get previousDayReport => _previousDayReport;
-  Map<String, dynamic> get searchedReport => _searchedReport; // New getter
+  Map<String, dynamic> get searchedReport => _searchedReport; 
 
   bool get isLoading => _isLoading;
 
@@ -113,7 +110,6 @@ class Serviceprovider extends ChangeNotifier {
     }
   }
 
-  // Function to fetch data from API based on the selected date
   Future<void> fetchDatasearch(DateTime date) async {
     _isLoading = true;
     hasNoData = false;
@@ -127,25 +123,24 @@ class Serviceprovider extends ChangeNotifier {
 
       final response = await http.get(Uri.parse(apiUrl));
       if (response.statusCode == 204) {
-        // No Content returned by the server
         hasNoData = true;
-        _searchedReport = {}; // Clear the report
+        _searchedReport = {}; 
       } else if (response.statusCode == 200) {
         final data = response.body;
         if (data.isEmpty) {
-          hasNoData = true; // No data received
+          hasNoData = true; 
           _searchedReport = {};
         } else {
           _searchedReport = json.decode(response.body);
         }
       } else {
         hasNoData = true;
-        _searchedReport = {}; // Clear the report on error
+        _searchedReport = {}; 
         log('Failed to fetch data: ${response.statusCode}');
       }
     } catch (e) {
       hasNoData = true;
-      _searchedReport = {}; // Clear the report on exception
+      _searchedReport = {}; 
       log('Error fetching data: $e');
     } finally {
       _isLoading = false;
@@ -175,7 +170,6 @@ class ChartDataProvider with ChangeNotifier {
 
   Future<void> fetchChartData() async {
     try {
-      // Clear previous data
       profits.clear();
       losses.clear();
       payments.clear();
@@ -183,7 +177,6 @@ class ChartDataProvider with ChangeNotifier {
       double tempTotalLoses = 0;
       double tempTotalPayments = 0;
 
-      // Fetching daily data for the past 7 days
       for (int i = 6; i >= 0; i--) {
         final DateTime date = DateTime.now().subtract(Duration(days: i));
         final String formattedDate =
@@ -218,7 +211,6 @@ class ChartDataProvider with ChangeNotifier {
         }
       }
 
-      // Fetching today's data
       const String todayApiUrl =
           'http://opticofficeapi.runasp.net/api/Reports/daily';
       final responseToday = await http.get(Uri.parse(todayApiUrl));
@@ -235,7 +227,6 @@ class ChartDataProvider with ChangeNotifier {
           losses.add(todayLosesTotal);
           payments.add(todayPaymentsTotal);
 
-          // Update today's totals
           paymentsTotal = todayPaymentsTotal;
           losesTotal = todayLosesTotal;
           profit = todayProfit;
@@ -250,12 +241,10 @@ class ChartDataProvider with ChangeNotifier {
         payments.add(0.0);
       }
 
-      // Set the accumulated totals for the week
       weekLosesTotal = tempTotalLoses;
       weekPaymentsTotal = tempTotalPayments;
       weekProfit = tempTotalPayments - tempTotalLoses;
 
-      // Update spots for chart plotting
       spots = profits
           .asMap()
           .entries

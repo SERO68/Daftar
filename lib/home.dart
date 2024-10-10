@@ -9,25 +9,24 @@ class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
   String getFormattedDate(DateTime date) {
-    return DateFormat('dd MMMM ', 'ar').format(date); // Example: "12 سبتمبر"
+    return DateFormat('dd MMMM ', 'ar').format(date); 
   }
 
   String getMonthName(DateTime date) {
-    return DateFormat('MMMM', 'ar').format(date); // Example: "سبتمبر"
+    return DateFormat('MMMM', 'ar').format(date); 
   }
 
 String getWeekNumberOfMonth(DateTime date) {
   int weekOfMonth = ((date.day - 1) / 7).floor() + 1;
-  String monthName = DateFormat('MMMM', 'ar').format(date); // Get month name in Arabic
-  return 'الأسبوع $weekOfMonth من $monthName'; // "Week X of [Month]" in Arabic
+  String monthName = DateFormat('MMMM', 'ar').format(date); 
+  return 'الأسبوع $weekOfMonth من $monthName'; 
 }
 
 
   @override
   Widget build(BuildContext context) {
-    DateTime today = DateTime.now(); // Get the current date
-    String currentMonth = getMonthName(today); // Get the current month in Arabic
-
+    DateTime today = DateTime.now();
+    String currentMonth = getMonthName(today); 
     return Column(
       children: [
         Container(height: 30, color: Colors.red[700], width: double.infinity,),
@@ -39,7 +38,7 @@ String getWeekNumberOfMonth(DateTime date) {
             children: [
               const SizedBox(width: 1,),
               Text(
-                currentMonth, // Display the current month in Arabic
+                currentMonth, 
                 style: const TextStyle(
                   color: Color.fromARGB(219, 255, 255, 255),
                   fontSize: 24,

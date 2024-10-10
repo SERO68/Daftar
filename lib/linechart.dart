@@ -2,7 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:reports/serviceprovider.dart';
-import 'package:intl/intl.dart'; // Import to format the date
+import 'package:intl/intl.dart'; 
 
 class LineChartSample extends StatelessWidget {
   const LineChartSample({super.key});
@@ -15,13 +15,12 @@ class LineChartSample extends StatelessWidget {
         return const Center(child: CircularProgressIndicator());
       }
 
-      // Generate labels for the last 7 days, including today
       List<String> daysOfWeek = List.generate(8, (index) {
         DateTime date = DateTime.now().subtract(Duration(days: 7 - index));
         if (index == 7) {
-          return 'Today'; // Display "Today" in Arabic for the last day
+          return 'Today'; 
         } else {
-          return DateFormat('EEE').format(date); // Format date to show abbreviated day of week (e.g., Mon, Tue)
+          return DateFormat('EEE').format(date); 
         }
       });
 
@@ -54,7 +53,7 @@ class LineChartSample extends StatelessWidget {
               ),
             ),
             leftTitles: const AxisTitles(
-              sideTitles: SideTitles(showTitles: false), // Hide the Y-axis labels
+              sideTitles: SideTitles(showTitles: false), 
             ),
             rightTitles: const AxisTitles(
               sideTitles: SideTitles(showTitles: false),
